@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import unittest
 from rect_comp import get_compliment, Rect, Point
 
