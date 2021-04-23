@@ -1,46 +1,21 @@
-#!/usr/bin/env python3
-
 import unittest
-from rect_comp import get_compliment, Rect, Point
+import logging
 
+import test_line, test_point, test_compliment, test_random, test_rect
 
-class GetComplimentTest(unittest.TestCase):
+logging.getLogger().setLevel(logging.INFO)
 
-    def test_empty_case(self):
-        frame = Rect(Point(0, 0), Point(42, 42))
-        rects = []
-        c_rects = get_compliment(frame, rects)
-        self.assertEqual(len(c_rects), 1)
-        self.assertEqual(c_rects[0], frame)
+# initialize the test suite
+loader = unittest.TestLoader()
+suite  = unittest.TestSuite()
 
-    def test_single_rect(self):
-        frame = Rect(Point(0, 0), Point(42, 42))
-        rects = [Rect(Point(0, 0), Point(21, 42))]
-        c_rects = get_compliment(frame, rects)
+# add tests to the test suite
+suite.addTests(loader.loadTestsFromModule(test_rect))
+suite.addTests(loader.loadTestsFromModule(test_random))
+suite.addTests(loader.loadTestsFromModule(test_point))
+suite.addTests(loader.loadTestsFromModule(test_line))
+suite.addTests(loader.loadTestsFromModule(test_compliment))
 
-        self.assertEqual(len(c_rects), 1)
-        self.assertEqual(c_rects[0], Rect(Point(21, 0), Point(42, 42)))
-
-    def test_already_full_single_rect(self):
-        frame = Rect(Point(0, 0), Point(42, 42))
-        rects = [Rect(Point(0, 0), Point(42, 42))]
-        c_rects = get_compliment(frame, rects)
-        
-        self.assertEqual(len(c_rects), 0)
-    
-    def test_already_full_multiple_rect_vertical(self):
-        frame = Rect(Point(0, 0), Point(42, 42))
-        rects = [Rect(Point(0, 0), Point(21, 42)), Rect(Point(21, 0), Point(42, 42))]
-        c_rects = get_compliment(frame, rects)
-        
-        self.assertEqual(len(c_rects), 0)
-    
-    def test_already_full_multiple_rect_horizontal(self):
-        frame = Rect(Point(0, 0), Point(42, 42))
-        rects = [Rect(Point(0, 0), Point(42, 21)), Rect(Point(0, 21), Point(42, 42))]
-        c_rects = get_compliment(frame, rects)
-        
-        self.assertEqual(len(c_rects), 0)
-    
-if __name__ == '__main__':
-    unittest.main()
+# initialize a runner, pass it your suite and run it
+runner = unittest.TextTestRunner(verbosity=0)
+result = runner.run(suite)

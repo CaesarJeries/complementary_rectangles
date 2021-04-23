@@ -45,11 +45,6 @@ def create_rects_from_points(intersection_points):
     for _, group in itertools.groupby(intersection_points, lambda p: p.x):
         grid.append(list(group))
     
-    for l in grid:
-        for p in l:
-            print(p, end=' ')
-        print()
-    
     rects = []
     for i in range(len(grid) - 1):
         for j in range(len(grid[i]) - 1):
@@ -101,14 +96,6 @@ def get_compliment(frame, rects):
         if r in rects:
             comp_rects.remove(r)
 
-    print('before remove', len(comp_rects))
-    for r in comp_rects:
-        print(r)
-
     comp_rects = remove_overlapping_rects(comp_rects, rects) 
     
-    print('Total rects:', len(comp_rects))
-    for r in comp_rects:
-        print(r)
-
     return comp_rects 
