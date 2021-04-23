@@ -28,7 +28,6 @@ class GetComplimentTest(unittest.TestCase):
         
         self.assertEqual(len(c_rects), 0)
     
-    # todo: add test case for reverse order
     def test_already_full_multiple_rect_vertical(self):
         frame = Rect(Point(0, 0), Point(42, 42))
         rects = [Rect(Point(0, 0), Point(21, 42)), Rect(Point(21, 0), Point(42, 42))]
