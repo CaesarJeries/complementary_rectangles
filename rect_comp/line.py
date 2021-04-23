@@ -4,11 +4,14 @@ from .point import Point
 
 logging.basicConfig(level=logging.DEBUG, format='%(message)s')
 
+class InvalidTangentException(Exception):
+    pass
+
 class VerticalLine(object):
     def __init__(self, p1, p2):
         eps = sys.float_info.epsilon
         if abs(p1.x - p2.x) > eps:
-            raise Exception('Invalid tangent. The line must be vertical')
+            raise InvalidTangentException('Invalid tangent. The line must be vertical')
         
         yt = max(p1.y, p2.y)
         yb = min(p1.y, p2.y)
@@ -19,11 +22,12 @@ class VerticalLine(object):
     def __str__(self):
         return 'Top: {}, Bottom: {}'.format(self.top, self.bottom)
 
+
 class HorizontalLine(object):
     def __init__(self, p1, p2):
         eps = sys.float_info.epsilon
         if abs(p1.y - p2.y) > eps:
-            raise Exception('Invalid tangent. The line must be horizontal')
+            raise InvalidTangentException('Invalid tangent. The line must be horizontal')
 
         x_right = max(p1.x, p2.x)
         x_left = min(p1.x, p2.x)
@@ -35,9 +39,11 @@ class HorizontalLine(object):
     def __str__(self):
         return 'Left: {}, Right: {}'.format(self.left, self.right)
 
+
 def does_intersect(vertical: VerticalLine, horizontal: HorizontalLine):
     return horizontal.left.x < vertical.top.x < horizontal.right.x and\
            vertical.bottom.y < horizontal.left.y < vertical.top.y
+
 
 def get_intersection(vertical: VerticalLine, horizontal: HorizontalLine):
     return Point(vertical.top.x, horizontal.left.y)
