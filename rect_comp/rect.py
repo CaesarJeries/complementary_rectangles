@@ -103,3 +103,6 @@ class Rect(object):
             'right': right_line,
             'left': left_line
         }
+
+    def area(self):
+        return (self.top_right.x - self.bottom_left.x) * (self.top_right.y - self.bottom_left.y)
