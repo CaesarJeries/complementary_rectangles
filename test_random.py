@@ -2,7 +2,7 @@ import numpy as np
 import logging
 import unittest
 import sys
-from rect_comp import Rect, Point, get_compliment
+from rect_comp import Rect, Point, get_complement
 
 def generate_random_inner_rects(num_rects, frame):
     x_iter = frame.bottom_left.x
@@ -40,7 +40,7 @@ class TestRandom(unittest.TestCase):
             num_inners = np.random.randint(100)
             frame = gen_random_frame()
             rects = generate_random_inner_rects(num_inners, frame)
-            comp_rects = get_compliment(frame, rects)
+            comp_rects = get_complement(frame, rects)
             total_area = frame.area()
             area_sum = sum(r.area() for r in comp_rects)
             area_sum += sum(r.area() for r in rects)

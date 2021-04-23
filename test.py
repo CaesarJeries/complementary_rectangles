@@ -1,7 +1,7 @@
 import unittest
 import logging
 
-import test_line, test_point, test_compliment, test_random, test_rect
+import test_line, test_point, test_complement, test_random, test_rect
 
 logging.getLogger().setLevel(logging.INFO)
 
@@ -14,7 +14,7 @@ suite.addTests(loader.loadTestsFromModule(test_rect))
 suite.addTests(loader.loadTestsFromModule(test_random))
 suite.addTests(loader.loadTestsFromModule(test_point))
 suite.addTests(loader.loadTestsFromModule(test_line))
-suite.addTests(loader.loadTestsFromModule(test_compliment))
+suite.addTests(loader.loadTestsFromModule(test_complement))
 
 # initialize a runner, pass it your suite and run it
 runner = unittest.TextTestRunner(verbosity=0)

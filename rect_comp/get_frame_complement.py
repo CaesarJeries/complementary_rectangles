@@ -72,7 +72,7 @@ def remove_overlapping_rects(comp_rects, input_rects):
     return retval
 
 
-def get_compliment(frame, rects):
+def get_complement(frame, rects):
     """
     frame - an axis-aligned rectangle (R)
     rects - a list of smaller rectangles which satisfy the following conditions:
@@ -80,7 +80,7 @@ def get_compliment(frame, rects):
                 - bound by `frame`
                 - non-overlapping
     
-    @return a list of complimentary non-overlapping rectangles, denoted c_rects, such that
+    @return a list of complementary non-overlapping rectangles, denoted c_rects, such that
             the union of `rects` and c_rects covers the entirety of `frame`
     """
     if len(rects) == 0:
