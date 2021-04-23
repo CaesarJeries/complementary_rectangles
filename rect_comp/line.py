@@ -35,6 +35,9 @@ class HorizontalLine(object):
     def __str__(self):
         return 'Left: {}, Right: {}'.format(self.left, self.right)
 
+def does_intersect(vertical: VerticalLine, horizontal: HorizontalLine):
+    return horizontal.left.x < vertical.top.x < horizontal.right.x and\
+           vertical.bottom.y < horizontal.left.y < vertical.top.y
 
 def get_intersection(vertical: VerticalLine, horizontal: HorizontalLine):
     return Point(vertical.top.x, horizontal.left.y)
