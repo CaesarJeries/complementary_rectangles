@@ -1,16 +1,4 @@
-
-class Point(object):
-    
-    def __init__(self, x, y):
-        self.x = float(x)
-        self.y = float(y)
-
-
-class Rect(object):
-
-    def __init__(self, p1, p2):
-        self.bottom_left = p1
-        self.top_right = p2
+from .rect import Rect
 
 
 def get_compliment(frame, rects):
@@ -24,4 +12,6 @@ def get_compliment(frame, rects):
     @return a list of complimentary non-overlapping rectangles, denoted c_rects, such that
             the union of `rects` and c_rects covers the entirety of `frame`
     """
-    pass
+    if len(rects) == 0:
+        return [frame]
+    
